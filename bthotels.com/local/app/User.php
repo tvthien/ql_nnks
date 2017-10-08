@@ -14,6 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'id_user';
+    public $incrementing = false;
+    
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -26,4 +29,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cogoidv()
+    {
+        return $this->hasMany('App\Chitietgdv','ma_tk','id_user');
+    }
+    public function coquyen()
+    {
+        return $this->belongsTo('App\Quyen','ma_quyen_user','id_quyen');
+    }
+    public function thuocnnks()
+    {
+        return $this->belongsTo('App\Nnks','ma_nnks_user','id_nnks');
+    }
+    public function nguoitao()
+    {
+        return $this->belongsTo('App\User','nguoi_tao','id_user');
+    }
 }
