@@ -25,8 +25,17 @@ Route::group(['prefix'=>'superadmin','middleware'=>'SuperAdmin'],function(){
 	});
 	Route::get('dangxuat','DangnhapController@getDangxuat');
 
-	Route::group(['prefix'=>'user'],function(){
+	Route::group(['prefix'=>'goidv'],function(){
 
+		Route::get('danhsach','GoidichvuController@getDanhsach');
+		Route::get('sua/{id}','GoidichvuController@getSua');
+		Route::post('sua/{id}','GoidichvuController@postSua');
+		Route::get('them','GoidichvuController@getThem');
+		Route::post('them','GoidichvuController@postThem');
+		Route::get('xoa/{id}','GoidichvuController@getXoa');
+	});
+
+	Route::group(['prefix'=>'user'],function(){
 
 		Route::get('danhsach','UserController@getDanhsachUser');
 		Route::get('sua/{id}','UserController@getSuaUser');
@@ -101,9 +110,19 @@ Route::group(['prefix'=>'superadmin','middleware'=>'SuperAdmin'],function(){
 		Route::post('sua/{id}','DiadiemController@postSuaPhuongxa');
 		Route::post('them','DiadiemController@postThemPhuongxa');
 		Route::get('ajax/ttp_change/{id}','DiadiemController@getAjaxQuhuyen');
-
 		
 	});
+
+
+	Route::group(['prefix'=>'kieuphong'],function(){
+
+		Route::get('danhsach','PhongController@getDanhsachKieuphong');
+		Route::get('sua/{id}','PhongController@getSuaKieuphong');
+		Route::post('sua/{id}','PhongController@postSuaKieuphong');
+		Route::post('them','PhongController@postThemKieuphong');
+		
+	});
+
 
 });
 
@@ -122,6 +141,14 @@ Route::group(['prefix'=>'quanly','middleware'=>'Quanly'],function(){
 		Route::post('them','ThietbiController@postThemLoaitbi');
 		
 	});
+	Route::group(['prefix'=>'thietbi'],function(){
+
+		Route::get('danhsach','ThietbiController@getDanhsachThietbi');
+		Route::get('sua/{id}','ThietbiController@getSuaThietbi');
+		Route::post('sua/{id}','ThietbiController@postSuaThietbi');
+		Route::post('them','ThietbiController@postThemThietbi');
+		
+	});
 
 	Route::group(['prefix'=>'loaiphong'],function(){
 
@@ -132,15 +159,35 @@ Route::group(['prefix'=>'quanly','middleware'=>'Quanly'],function(){
 		Route::post('them','PhongController@postThemLoaiphong');
 		
 	});
-	Route::group(['prefix'=>'goidv'],function(){
+	Route::group(['prefix'=>'giaphong'],function(){
 
-		Route::get('danhsach','GoidichvuController@getDanhsach');
-		Route::get('sua/{id}','GoidichvuController@getSua');
-		Route::post('sua/{id}','GoidichvuController@postSua');
-		Route::get('them','GoidichvuController@getThem');
-		Route::post('them','GoidichvuController@postThem');
-		Route::get('xoa/{id}','GoidichvuController@getXoa');
+		Route::get('danhsach','PhongController@getDanhsachGiaphong');
+		Route::get('sua/{id_lp}/{id_kp}/{ngay}','PhongController@getSuaGiaphong');
+		Route::post('sua/{id_lp}/{id_kp}/{ngay}','PhongController@postSuaGiaphong');
+		Route::get('them','PhongController@getThemGiaphong');
+		Route::post('them','PhongController@postThemGiaphong');
+		Route::get('xoa/{id_lp}/{id_kp}/{ngay}','PhongController@getXoa');
+		
 	});
+	Route::group(['prefix'=>'khuvuc'],function(){
+
+		Route::get('danhsach','PhongController@getDanhsachKhuvuc');
+		Route::get('sua/{id}','PhongController@getSuaKhuvuc');
+		Route::post('sua/{id}','PhongController@postSuaKhuvuc');
+		Route::get('them','PhongController@getThemKhuvuc');
+		Route::post('them','PhongController@postThemKhuvuc');
+		
+	});
+	Route::group(['prefix'=>'tang'],function(){
+
+		Route::get('danhsach','PhongController@getDanhsachTang');
+		Route::get('sua/{id}','PhongController@getSuaTang');
+		Route::post('sua/{id}','PhongController@postSuaTang');
+		Route::get('them','PhongController@getThemTang');
+		Route::post('them','PhongController@postThemTang');
+		
+	});
+	
 
 
 });
